@@ -24,9 +24,7 @@ const findSum = (nums) => {
     if (!seen[current]) {
       //if difference is not in object, add number and index to object
       seen[diff] = nums[i];
-      console.log(seen);
     } else if (seen[current]) {
-      console.log("found the difference");
       return nums[i] * diff;
       //if difference is in object, multiply the two nums and return the product
     }
@@ -42,30 +40,21 @@ const threeSum = (nums) => {
 
   for (let i = 1; i < nums.length; i++) {
     //initialize 3 pointers; 1st, 2nd and last idx of array
-    if (i === 0 || sorted[i] > sorted[i - 1]) {
-      let left = i + 1;
-      let right = sorted.length - 1;
+    let left = i + 1;
+    let right = sorted.length - 1;
 
-      while (left < right) {
-        const sum = sorted[i] + sorted[left] + sorted[right];
-
-        if (sum === 2020) {
-          //if 3 pointers sum up to 2020 -> push to results array
-          console.log(`${sorted[i]} * ${sorted[left]} * ${sorted[right]}`);
-          return sorted[i] * sorted[left] * sorted[right];
-        } else if (sum < 2020) {
-          //if < 2020 increment left
-          let currentLeft = left;
-          while (sorted[currentLeft] === sorted[left]) {
-            left++;
-          }
-        } else if (sum > 2020) {
-          //if > 2020 decrement right
-          let currentRight = right;
-          while (sorted[currentRight] === sorted[right]) {
-            right--;
-          }
-        }
+    while (left < right) {
+      const sum = sorted[i] + sorted[left] + sorted[right];
+      if (sum === 2020) {
+        //if 3 pointers sum up to 2020 -> push to results array
+        console.log(`${sorted[i]} * ${sorted[left]} * ${sorted[right]}`);
+        return sorted[i] * sorted[left] * sorted[right];
+      } else if (sum < 2020) {
+        //if < 2020 increment left
+        left++;
+      } else if (sum > 2020) {
+        //if > 2020 decrement right
+        right--;
       }
     }
   }

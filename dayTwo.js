@@ -22,14 +22,23 @@ const countValidPasswords = (passwords) => {
       if (string[i] === char) charCount++;
     }
 
+    //Part 1
     //if char's count is in between min and max => increment count
-    if (charCount >= min && charCount <= max) count++;
+    // if (charCount >= min && charCount <= max) count++;
     //increment if so
     //skip if not
-    // console.log(`Char:${char} ; Min:${min} ; Max:${max} ; String:${string}`);
+
+    //Part 2
+    let idxOne = --min;
+    let idxTwo = --max;
+    if (
+      (string[idxOne] === char && string[idxTwo] !== char) ||
+      (string[idxOne] !== char && string[idxTwo] === char)
+    ) {
+      count++;
+    }
   });
   return count;
 };
 
-console.log(input.length);
 console.log(countValidPasswords(input));

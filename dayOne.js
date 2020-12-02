@@ -12,15 +12,12 @@ const input = fs
 // console.log(input);
 
 const findSum = (nums) => {
-  //create hashmap (object)
-  // seen : {num: index}
+  //create hashmap
   const seen = {};
-
   //loop through array of nums
   for (let i = 0; i < nums.length; i++) {
     const diff = 2020 - nums[i];
     const current = nums[i];
-
     if (!seen[current]) {
       //if difference is not in object, add number and index to object
       seen[diff] = nums[i];
@@ -35,8 +32,6 @@ const findSum = (nums) => {
 const threeSum = (nums) => {
   //sort array
   const sorted = nums.sort((a, b) => a - b);
-  console.log(sorted[0], sorted[1]);
-  //create empty array to store results
 
   for (let i = 1; i < nums.length; i++) {
     //initialize 3 pointers; 1st, 2nd and last idx of array

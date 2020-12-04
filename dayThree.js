@@ -11,10 +11,11 @@ const findTrees = (field, right, down) => {
   while (row < field.length) {
     if (field[row][col] === "#") treeCount++;
 
-    col += right;
+    col = (col + right) % input[0].length;
+    console.log(`${col},${right} || ${col + right} % ${input[0].length}`);
     row += down;
 
-    if (col > field[0].length - 1) col -= field[0].length;
+    // if (col > field[0].length - 1) col -= field[0].length;
   }
   return treeCount;
 };
@@ -39,4 +40,4 @@ let restOfSlopes = [
   [1, 2],
 ];
 
-console.log(partTwo(input, restOfSlopes));
+console.log(findTrees(input, 3, 1));

@@ -6,13 +6,6 @@ const input = fs
   .toString()
   .split(",,");
 
-const test = fs
-  .readFileSync("./daySixTest.txt")
-  .toString()
-  .split("\n")
-  .toString()
-  .split(",,");
-
 const yesCount = (groups) => {
   //initialize count to 0
   let count = 0;
@@ -36,5 +29,33 @@ const yesCount = (groups) => {
   return count;
 };
 
-// console.log(test);
-console.log(yesCount(input));
+const partTwo = (groups) => {
+  //initialize count to 0
+  let count = 0;
+  //loop through all the groups
+  groups.forEach((group) => {
+    //create seen object
+    const seen = {};
+    //how many people in each group (split(','))
+    let groupSize = group.split(",").filter((char) => char !== "").length;
+    //loop through each individual group
+    for (let i = 0; i < group.length; i++) {
+      //track how many yes votes
+      const char = group[i];
+      //if seen[char] = # of people in group, increment total count
+      if (seen[char]) {
+        seen[char]++;
+      } else if (char !== "," && !seen[char]) {
+        seen[char] = 1;
+      }
+    }
+
+    for (let char in seen) {
+      if (seen[char] === groupSize) count++;
+    }
+  });
+  //return count
+  return count;
+};
+
+console.log(partTwo(input));

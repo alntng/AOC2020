@@ -1,7 +1,7 @@
 /* eslint-disable max-statements */
 /* eslint-disable complexity */
 const fs = require("fs");
-const { fill, after } = require("lodash");
+
 const input = fs.readFileSync("./day11input.txt").toString().split("\n");
 input.pop();
 // .map((row) => row.split(""));
@@ -168,5 +168,4 @@ const part1 = (seats) => {
   return totalOccupied;
 };
 
-// console.log(test);
 console.log(part1(input));

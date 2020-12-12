@@ -18,7 +18,7 @@ for (let i = 0; i < test.length; i++) {
 
 const checkAround = (layout, row, col) => {
   let allAround = [];
-  // console.log(`Before ${row},${col}`);
+
   const checkDirection = (x, y) => {
     let currentRow = row + x;
     let currentCol = col + y;
@@ -29,8 +29,6 @@ const checkAround = (layout, row, col) => {
       currentCol < layout[0].length
     ) {
       if (layout[currentRow][currentCol] === "#") {
-        // console.log("adding a seat");
-        // console.log(currentRow, currentCol);
         allAround.push("#");
         return;
       } else if (layout[currentRow][currentCol] === "L") {
@@ -41,30 +39,13 @@ const checkAround = (layout, row, col) => {
         currentCol += y;
       }
     }
-    // console.log("found no seat");
+
     allAround.push("L");
-    // return;
   };
 
   //top left
   if (layout[row - 1] && layout[row - 1][col - 1]) {
     checkDirection(-1, -1);
-    // console.log("current", row, col);
-    // let currentRow = row--;
-    // let currentCol = col--;
-    // while (currentRow && currentCol) {
-    //   if (layout[currentRow][currentCol] === "#") {
-    //     console.log("adding a seat");
-    //     console.log(currentRow, currentCol);
-    //     allAround.push("#");
-    //     break;
-    //   } else {
-    //     currentRow--;
-    //     currentCol--;
-    //   }
-    // }
-    // console.log("found no seat");
-    // allAround.push("L");
     // allAround.push(layout[row - 1][col - 1]);
   } else {
     // console.log("out of bounds", row, col);
@@ -120,16 +101,12 @@ const checkAround = (layout, row, col) => {
     allAround.push("L");
   }
 
-  // console.log(`After ${row},${col}`);
-  // console.log("=====");
-
   let filledAround = 0;
 
   allAround.forEach((seat) => {
     if (seat === "#") filledAround++;
   });
-  // console.log(`current seat ${layout[row][col]}`);
-  // console.log(filledAround);
+
   return filledAround;
 };
 
@@ -137,7 +114,7 @@ const deepCopyFunction = (inObject) => {
   let outObject, value, key;
 
   if (typeof inObject !== "object" || inObject === null) {
-    return inObject; // Return the value if inObject is not an object
+    return inObject;
   }
 
   outObject = Array.isArray(inObject) ? [] : {};
@@ -152,9 +129,7 @@ const deepCopyFunction = (inObject) => {
 };
 
 const part1 = (seats) => {
-  // console.log(seats.length, seats[0].length);
   let changed = true;
-  let changeCount = 0;
 
   while (changed === true) {
     changed = false;
@@ -162,43 +137,29 @@ const part1 = (seats) => {
     for (let row = 0; row < seats.length; row++) {
       for (let col = 0; col < seats[0].length; col++) {
         let currentSeat = seats[row][col];
-        // console.log([row, col]);
-        let filled = checkAround(seats, row, col);
-        if (row === 0 && col === 9) {
-          console.log("0,9");
-          console.log("filled", filled);
-        }
 
-        // console.log(`filled ${filled}`);
-        // console.log(filled);
+        let filled = checkAround(seats, row, col);
+
         if (currentSeat === "L" && filled === 0) {
-          // console.log("changing to filled");
-          // console.log(`before: ${clone[row][col]}`);
           clone[row][col] = "#";
-          // console.log(`after: ${clone[row][col]}`);
+
           changed = true;
         } else if (currentSeat === "#" && filled >= 5) {
-          // console.log("changing to empty");
           clone[row][col] = "L";
           changed = true;
         }
       }
     }
-    // console.log("passed through entire array");
-    // console.log(clone);
+
     if (changed === true) {
       changeCount++;
-      // console.log(changeCount);
+
       seats = deepCopyFunction(clone);
-      // console.log(changeCount);
-      // console.log(seats);
     }
   }
 
-  // console.log(seats);
-
   let totalOccupied = 0;
-  // console.log(seats);
+
   for (let row = 0; row < seats.length; row++) {
     for (let col = 0; col < seats[0].length; col++) {
       if (seats[row][col] === "#") totalOccupied++;

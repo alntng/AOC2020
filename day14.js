@@ -5,7 +5,7 @@ test.pop();
 
 const input = fs.readFileSync("./day14input.txt").toString().split("\n");
 input.pop();
-// console.log(input);
+
 let twoBits = new Array(36).fill(0);
 for (let i = 36; i > 0; i--) {
   twoBits[i - 1] = Math.pow(2, 36 - i);
@@ -50,7 +50,6 @@ const issaBit = (program, mask) => {
 const nonZeroes = (programs) => {
   let mem = [];
   let mask = [];
-
   programs.forEach((program) => {
     if (program[1] === "a") {
       mask = program
@@ -63,15 +62,12 @@ const nonZeroes = (programs) => {
             return num;
           }
         });
-      // console.log(mask);
     } else {
       let [i, num] = issaBit(program, mask);
       mem[i] = num;
     }
   });
-
-  let sum = mem.reduce((a, b) => a + b, 0);
-  console.log(sum);
+  console.log(mem.reduce((a, b) => a + b, 0));
 };
 
 nonZeroes(input);

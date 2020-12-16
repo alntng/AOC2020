@@ -25,11 +25,11 @@ const day15 = (nums) => {
 // day15([16, 1, 0, 18, 12, 14, 19]);
 // console.log(30000000 / 2020);
 
-const starting = [0, 3, 6];
+const starting = [16, 1, 0, 18, 12, 14, 19];
 
 let spoken = new Map();
 let justSpoke = 0;
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 30000000; i++) {
   if (starting[i] || starting[i] === 0) {
     justSpoke = starting[i];
     spoken.set(justSpoke, i + 1);
@@ -37,15 +37,15 @@ for (let i = 0; i < 5; i++) {
     spoken.set(justSpoke, i);
     justSpoke = 0;
   } else {
-    console.log(`just spoke ${justSpoke}`);
+    // console.log(`just spoke ${justSpoke}`);
     let temp = spoken.get(justSpoke);
-    console.log("temp", temp);
+    // console.log("temp", temp);
     spoken.set(justSpoke, i);
-    console.log(i);
-    console.log("just set", spoken);
+    // console.log(i);
+    // console.log("just set", spoken);
     justSpoke = i - temp;
-    console.log(`just spoke after ${justSpoke}`);
+    // console.log(`just spoke after ${justSpoke}`);
   }
-  console.log("=====");
+  // console.log("=====");
 }
 console.log(justSpoke);

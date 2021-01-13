@@ -12,19 +12,15 @@ const input = fs
 // console.log(input);
 
 const findSum = (nums) => {
-  //create hashmap
   const seen = {};
-  //loop through array of nums
   for (let i = 0; i < nums.length; i++) {
     const diff = 2020 - nums[i];
     const current = nums[i];
     if (!seen[current]) {
-      //if difference is not in object, add number and index to object
       seen[diff] = nums[i];
     } else if (seen[current]) {
       console.log(nums[i], diff);
       return nums[i] * diff;
-      //if difference is in object, multiply the two nums and return the product
     }
   }
 };

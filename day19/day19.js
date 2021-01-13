@@ -1,3 +1,4 @@
+/* eslint-disable handle-callback-err */
 /* eslint-disable complexity */
 /* eslint-disable no-loop-func */
 const fs = require("fs");

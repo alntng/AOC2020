@@ -22,6 +22,7 @@ const findSum = (nums) => {
       //if difference is not in object, add number and index to object
       seen[diff] = nums[i];
     } else if (seen[current]) {
+      console.log(nums[i], diff);
       return nums[i] * diff;
       //if difference is in object, multiply the two nums and return the product
     }
@@ -55,6 +56,6 @@ const threeSum = (nums) => {
   }
 };
 
-let test = [2001, 95, 17, 84, 2];
+let test = [1721, 919, 366, 299, 675, 1456];
 
-console.log(threeSum(input));
+console.log(findSum(input));

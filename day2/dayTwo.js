@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 const fs = require("fs");
 const input = fs.readFileSync("./dayTwoInput.txt").toString().split("\n");
 input.pop();
@@ -23,10 +24,10 @@ const countValidPasswords = (passwords) => {
     }
 
     //Part 1
-    //if char's count is in between min and max => increment count
-    // if (charCount >= min && charCount <= max) count++;
-    //increment if so
-    //skip if not
+    // if char's count is in between min and max => increment count
+    if (charCount >= min && charCount <= max) count++;
+    // increment if so
+    // skip if not
 
     //Part 2
     let idxOne = --min;
